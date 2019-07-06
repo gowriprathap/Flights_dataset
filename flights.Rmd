@@ -1,0 +1,65 @@
+---
+title: "Flights of New York"
+author: Gowri Prathap
+date: February 27, 2019
+documentclass: article
+geometry: margin=1in
+fontsize: 11pt
+output:
+  pdf_document:
+    toc: false
+    df_print: tibble
+    fig_caption: false
+    number_sections: false
+    dev: pdf
+    highlight: tango
+  html_document:
+    theme: default
+    self_contained: true
+    toc: false
+    df_print: tibble
+    fig_caption: false
+    number_sections: false
+    smart: true
+    dev: svg
+---
+
+```{r setup, include = FALSE}
+# DO NOT ALTER THIS CHUNK
+knitr::opts_chunk$set(
+  echo = TRUE,
+  eval = TRUE,
+  fig.width = 5,
+  fig.asp = 0.618,
+  out.width = "70%",
+  dpi = 120,
+  fig.align = "center",
+  cache = FALSE
+)
+# Load required packages
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(nycflights13))
+```
+
+Type the following command in the Console window to view the dataset:
+
+View(flights)
+
+Important questions about te dataset: 
+
+1. How many rows and columns does this dataset have? 
+This data set has are 336776 rows and 19 columns.
+
+2. What does a single row in this dataset represent? 
+Each row in this dataset represents data for each flight that departed NYC (i.e. JFK, LGA or EWR) in 2013.
+
+3. What is the difference between the information contained in the dep_time and sched_dep_time columns? 
+The dep_time gives the actual departing time of the flights, while sched_dep_time gives the scheduled departing time of the flights.
+
+4. Which columns contain information about dates and times? 
+Column 3 (day) gives the date and columns 15-19 give the air times in hours, minutes and so on. Columns 4-9 give the timings of the departure, arrival, and so on.
+
+5. Airplanes are reused across many different flights. Which columns would be helpful to use in identifying individual airplanes? 
+The 'flight' column and 'tailnum' column which gives the flight number and plane tail number respectively will help identify individual flights.
+
+
