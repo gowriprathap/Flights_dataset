@@ -1,7 +1,6 @@
 ---
 title: "Flights of New York"
 author: Gowri Prathap
-date: February 27, 2019
 documentclass: article
 geometry: margin=1in
 fontsize: 11pt
@@ -45,7 +44,7 @@ Type the following command in the Console window to view the dataset:
 
 View(flights)
 
-## Important questions about te dataset: 
+# Important questions about te dataset: 
 
 1. How many rows and columns does this dataset have? 
 This data set has are 336776 rows and 19 columns.
@@ -62,7 +61,9 @@ Column 3 (day) gives the date and columns 15-19 give the air times in hours, min
 5. Airplanes are reused across many different flights. Which columns would be helpful to use in identifying individual airplanes? 
 The 'flight' column and 'tailnum' column which gives the flight number and plane tail number respectively will help identify individual flights.
 
-## Important functions:
+# Important functions:
+
+## select() function 
 
 The select() function selects columns from a dataset.
 ```{r}
@@ -79,6 +80,7 @@ flights %>%
 The colon prints all columns between including the two columns mentioned with the colon. Here it prints all the columns form year to month since the command says year:day.
 
 
+## arrange() function
 
 The arrange() function sorts columns with textual data (chr data type) into alphabetical order and sorts numerical data into numerical order.
 
@@ -102,6 +104,7 @@ flights %>%
 The first row of the arranged dataset has the longest departure delay, which is flight 51 tail number N384HA.
 
 
+## mutate() function
 
 mutate() lets us transform a dataset by applying the same operation to each row in the dataset and appending the results as a new column.
 ```{r}
@@ -111,3 +114,52 @@ flights %>%
   )
 ```
 The new column shows up as the last column of the dataset. The name of this new column is average_speed. The part of the code under mutate() where the column is declared, where the column name is given, is taken as the column name. Here, under mutate() it is given as average_speed = the formula, and hence average_speed is taken as the name of the column.
+
+```{r}
+flights %>%
+  mutate(
+    dep_time_hour = dep_time %/% 100,
+    dep_time_minute = dep_time %% 100,
+    dep_time_minutes_midnight = dep_time_hour * 60 + dep_time_minute
+  )
+```
+We used the  dep_time_hour and dep_time_minute columns to compute the number of minutes since midnight.
+
+## filter() function
+
+To find all the flights operated by United Airlines (UA) that arrived early.
+```{r}
+flights %>%
+  filter(
+    arr_delay < 0
+  )
+```
+
+```{r}
+flights %>%
+  filter(
+    carrier == "UA"
+  )
+```
+
+This code can be combined into a single block of code:
+```{r}
+flights %>%
+  filter(
+    arr_delay < 0,
+    carrier == "UA"
+  )
+```
+
+##Using group_by() and summarize()
+
+To calculate the mean (average) arrival delay for each airline carrier:
+```{r}
+flights %>%
+  group_by(carrier) %>%
+  summarize(
+    average_arr_delay = mean(arr_delay, na.rm = TRUE)
+  )
+```
+Airline carrier FL had the longest arrival delays on average. The airline carrier AS had the shortest arrival delays on average.
+
