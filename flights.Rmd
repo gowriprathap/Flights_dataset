@@ -45,7 +45,7 @@ Type the following command in the Console window to view the dataset:
 
 View(flights)
 
-Important questions about te dataset: 
+## Important questions about te dataset: 
 
 1. How many rows and columns does this dataset have? 
 This data set has are 336776 rows and 19 columns.
@@ -62,4 +62,20 @@ Column 3 (day) gives the date and columns 15-19 give the air times in hours, min
 5. Airplanes are reused across many different flights. Which columns would be helpful to use in identifying individual airplanes? 
 The 'flight' column and 'tailnum' column which gives the flight number and plane tail number respectively will help identify individual flights.
 
+## Important functions:
 
+The select() function selects columns from a dataset.
+
+```{r}
+flights %>%
+  select(year, month)
+```
+This command displays the columns year and month since it was included in the select() function.
+
+The symbol %>% is called the pipe and is used to pass a dataset through a chain of commands.
+
+```{r}
+flights %>%
+  select(year:day)
+```
+The colon prints all columns between including the two columns mentioned with the colon. Here it prints all the columns form year to month since the command says year:day.
