@@ -44,7 +44,8 @@ Type the following command in the Console window to view the dataset:
 
 View(flights)
 
-# Important questions about te dataset: 
+
+# Important questions about the dataset: 
 
 1. How many rows and columns does this dataset have? 
 This data set has are 336776 rows and 19 columns.
