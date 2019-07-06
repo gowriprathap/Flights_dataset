@@ -93,3 +93,21 @@ flights %>%
 ```
 Based on the output, it looks like both the month and day columns were sorted. Day column was sorted first.
 If we reverse the order of columns in arrange(), the first piece of code does not make a difference, since days were arranged first, and days always change before months so it does not differ from the original dataset. The second piece of code makes a difference if reversed because it sorts the months first, in the order 1, 2, 3,...etc. and days only after that. Hence it is different from the first dataset.
+
+The column that gives the departure delay is 'dep_delay'.
+```{r}
+flights %>%
+  arrange(desc(dep_delay))
+```
+The first row of the arranged dataset has the longest departure delay, which is flight 51 tail number N384HA.
+
+
+
+mutate() lets us transform a dataset by applying the same operation to each row in the dataset and appending the results as a new column.
+```{r}
+flights %>%
+  mutate(
+    average_speed = distance / (air_time * 60)
+  )
+```
+The new column shows up as the last column of the dataset. The name of this new column is average_speed. The part of the code under mutate() where the column is declared, where the column name is given, is taken as the column name. Here, under mutate() it is given as average_speed = the formula, and hence average_speed is taken as the name of the column.
