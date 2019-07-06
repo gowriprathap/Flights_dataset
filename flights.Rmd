@@ -65,13 +65,11 @@ The 'flight' column and 'tailnum' column which gives the flight number and plane
 ## Important functions:
 
 The select() function selects columns from a dataset.
-
 ```{r}
 flights %>%
   select(year, month)
 ```
 This command displays the columns year and month since it was included in the select() function.
-
 The symbol %>% is called the pipe and is used to pass a dataset through a chain of commands.
 
 ```{r}
@@ -79,3 +77,19 @@ flights %>%
   select(year:day)
 ```
 The colon prints all columns between including the two columns mentioned with the colon. Here it prints all the columns form year to month since the command says year:day.
+
+
+
+The arrange() function sorts columns with textual data (chr data type) into alphabetical order and sorts numerical data into numerical order.
+
+```{r}
+flights %>%
+  arrange(month, day)
+```
+
+```{r}
+flights %>%
+  arrange(day, month)
+```
+Based on the output, it looks like both the month and day columns were sorted. Day column was sorted first.
+If we reverse the order of columns in arrange(), the first piece of code does not make a difference, since days were arranged first, and days always change before months so it does not differ from the original dataset. The second piece of code makes a difference if reversed because it sorts the months first, in the order 1, 2, 3,...etc. and days only after that. Hence it is different from the first dataset.
